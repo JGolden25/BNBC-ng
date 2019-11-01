@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rental-list.component.scss']
 })
 export class RentalListComponent implements OnInit {
+  rentals: any[] = [1,2,3,4];
 
   constructor() { }
 
