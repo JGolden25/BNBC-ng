@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RentalService } from '../shared/rental.service';
+import { Rental } from "../shared/rental.model";
 
 @Component({
   selector: 'bwm-rental-list',
@@ -7,24 +8,28 @@ import { RentalService } from '../shared/rental.service';
   styleUrls: ['./rental-list.component.scss']
 })
 export class RentalListComponent implements OnInit {
-  rentals: any[] = [];
+  
+  rentals: Rental[] = [];
+
+ 
   constructor(private rentalService: RentalService) { }
 
   ngOnInit() {
-    debugger;
+    
     const rentalObservable = this.rentalService.getRentals();
 
-    debugger;
+    
     rentalObservable.subscribe(
-      (rentals) => {
-        debugger;
+      (rentals: Rental[]) => {
+       
         this.rentals = rentals;
+        
       },
       (err) => {
-        debugger;
+        
       },
       () => {
-        debugger;
+        
       });
   }
 
