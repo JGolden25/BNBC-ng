@@ -1,3 +1,5 @@
+const Rental = require('./models/rental')
+
 class FakeDb {
 
     constructor() {
@@ -35,4 +37,25 @@ class FakeDb {
             dailyRate: 23
 }]
     }
+
+    async cleanDb() {
+       await Rental.remove({}); 
+    }
+
+    pushRentalsToDb() {
+        this.rentals.forEach((rental) => {
+            const newRental = new Rental(rental);
+
+            newRental.save();
+        })
+    }
+
+
+seedDb() {
+    this.cleanDb();
+    this.pushRentalsToDb();
 }
+}
+
+
+module.exports = FakeDb;
