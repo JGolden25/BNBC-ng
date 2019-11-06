@@ -22,7 +22,6 @@ mapReadyHandler() {
     (coordinates) => {
      this.lat = coordinates.lat;
      this.lng = coordinates.lng;
-
-    });
+});
 }
 }
