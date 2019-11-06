@@ -2,6 +2,7 @@ import { MapComponent } from './map.component';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 
+import { MapService } from './map.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ AgmCoreModule.forRoot({
     apiKey: 'AIzaSyBKTqGnyFpUhrMYU3HfgHqH_FaH3qUzxhw'
 })
   ],
-  providers: []
+  providers: [
+    MapService
+  ]
   
 })
 export class MapModule { }
