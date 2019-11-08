@@ -16,7 +16,7 @@ if (err) {
 }
 
         res.json(foundRental);
-    })
-})
+    });
+});
 
 module.exports = router;
