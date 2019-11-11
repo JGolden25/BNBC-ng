@@ -1,5 +1,5 @@
-const Rental = require('./models/rental')
-
+const Rental = require('./models/rental');
+const User = require('./models/user');
 class FakeDb {
 
     constructor() {
