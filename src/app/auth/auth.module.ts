@@ -25,4 +25,4 @@ const routes: Routes = [
   ],
   providers: []
 })
-export class AppModule { }
+export class AuthModule { }
