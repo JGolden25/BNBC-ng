@@ -83,6 +83,9 @@ exports.authMiddleware = function(req, res, next) {
             }
             if (user) {
                 res.locals.user = user;
+                next();
+            } else {
+                return res.status(422).send({errors: [{title: 'Not Authorized.', detail: 'You need to log in to get access.'}]});
             }
         })
     } else {
