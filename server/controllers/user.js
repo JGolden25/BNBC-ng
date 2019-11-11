@@ -23,6 +23,7 @@ exports.auth = function(req, res) {
                 userId: user.id,
                 username: user.username
               }, config.SECRET, { expiresIn: '1h' });
+              
               return res.json(token);
         } else {
             return res.status(422).send({errors: [{title: 'Wrong Data!', detail: 'Wrong Email or Password!'}]});
