@@ -63,9 +63,9 @@ exports.register = function(req,res) {
                 return res.status(422).send({errors: normalizeErrors(err.errors)});
             }
 
-            res.json({'registered': true})
+            return res.json({'registered': true})
         })
     })
 
-    res.json({username, email});
+    return res.json({username, email});
 }
