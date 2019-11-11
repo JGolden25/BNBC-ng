@@ -46,7 +46,7 @@ this.users = [{
     }
 
     async cleanDb() {
-        await this.users.remove({});
+        await User.remove({});
        await Rental.remove({}); 
     }
 
