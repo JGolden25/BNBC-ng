@@ -8,6 +8,7 @@ import { RentalComponent } from './rental/rental.component';
 
 
 import { RentalModule } from './rental/rental.module';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    RentalModule
+    RentalModule,
+    AuthComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
