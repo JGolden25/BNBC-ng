@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import 'rxjs/Rx';
+import { map } from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
@@ -8,5 +10,15 @@ export class AuthService {
 
     public register(userData: any): Observable<any> {
         return this.http.post('/api/v1/users/register', userData);
+    }
+    public login(userData: any): Observable<any> {
+        return this.http.post('/api/v1/users/auth', userData).pipe(map(
+          (token:string) => this.saveToken(token)));
+          
+    }
+    private saveToken(token: string): string {
+       localStorage.setItem('bwm_auth', token);
+
+       return token;
     }
 }
