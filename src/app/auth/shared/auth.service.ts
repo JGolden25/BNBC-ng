@@ -16,7 +16,7 @@ class DecodedToken {
 export class AuthService {
     private decodedToken;
     constructor(private http: HttpClient) {
-        this.decodedToken = JSON.parse(localStorage.getItem('bwm_meta')) || new DecodedToken;
+        this.decodedToken = JSON.parse(localStorage.getItem('bwm_meta')) || new DecodedToken();
     }
 
     private saveToken(token: string): string {
@@ -34,8 +34,8 @@ export class AuthService {
         return this.http.post('/api/v1/users/register', userData);
     }
     public login(userData: any): Observable<any> {
-        return this.http.post('/api/v1/users/auth', userData).pipe(map(
-          (token:string) => this.saveToken(token)));
+        return this.http.post('/api/v1/users/auth', userData).map(
+          (token:string) => this.saveToken(token));
           
     }
 
@@ -49,5 +49,13 @@ export class AuthService {
     public isAuthenticated(): boolean {
 
         return moment().isBefore(this.getExpiration());
+    }
+
+    public getAuthToken(): string {
+        return localStorage.getItem('bwm-auth');
+    }
+
+    public getUsername(): string {
+        return this.decodedToken.username;
     }
 }
