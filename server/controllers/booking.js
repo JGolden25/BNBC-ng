@@ -1,3 +1,3 @@
-exports.cretingBooking = function(req,res) {
+exports.createBooking = function(req,res) {
     res.json({'createBooking': 'ok'});
 }
