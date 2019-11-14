@@ -42,6 +42,11 @@ this.users = [{
     email: "test6@gmail.com",
     password: "test6"
 
+}, {
+    username: "Testuser9",
+    email: "test9@gmail.com",
+    password: "test9"
+
 }];
     }
 
@@ -52,6 +57,7 @@ this.users = [{
 
     pushDataToDb() {
 const user = new User(this.users[0]);
+const user2 = new User(this.users[1]);
 
         this.rentals.forEach((rental) => {
             const newRental = new Rental(rental);
@@ -63,6 +69,7 @@ const user = new User(this.users[0]);
         });
 
         user.save();
+        user2.save();
     }
 
 
