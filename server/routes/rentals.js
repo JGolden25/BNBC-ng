@@ -11,6 +11,7 @@ router.get('', function(req,res) {
     Rental.find({})
     .select('-bookings')
     .exec(function(err, foundRentals){
+
         res.json(foundRentals);
     });
    
@@ -28,7 +29,7 @@ if (err) {
    return res.status(422).send({errors: [{title: 'Rental Error!', detail:'Could not find rental!'}]});
 }
 
-        res.json(foundRental);
+        return res.json(foundRental);
     });
 });
 
