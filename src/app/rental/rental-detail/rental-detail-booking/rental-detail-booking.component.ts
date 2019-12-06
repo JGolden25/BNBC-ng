@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Rental } from '../../shared/rental.model';
+import { Booking } from '../../../booking/shared/booking.model';
 
 @Component({
   selector: 'bwm-rental-detail-booking',
@@ -9,7 +9,7 @@ import { Rental } from '../../shared/rental.model';
 export class RentalDetailBookingComponent implements OnInit {
 
   @Input() price: number;
-
+  @Input() bookings: Booking[];
   daterange: any = {};
 
   options: any = {
@@ -20,6 +20,15 @@ export class RentalDetailBookingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getBookedOutDates;
+  }
+
+  private getBookedOutDates() {
+    if (this.bookings && this.bookings.length > 0) {
+      this.bookings.forEach((booking: Booking) => {
+        console.log(booking);
+      });
+    }
   }
 
 
