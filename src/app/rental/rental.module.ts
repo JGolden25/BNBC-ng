@@ -13,6 +13,7 @@ import { MapModule } from '../common/map/map.module';
 import { UppercasePipe } from '../common/pipes/uppercase.pipe';
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { FormsModule } from '@angular/forms';
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
 
 const routes: Routes = [
@@ -42,7 +43,8 @@ children: [
     HttpClientModule,
     NgPipesModule,
     MapModule,
-    Daterangepicker
+    Daterangepicker,
+    FormsModule
 ],
     providers: [RentalService,
         HelperService]
