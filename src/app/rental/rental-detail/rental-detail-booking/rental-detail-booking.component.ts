@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Booking } from '../../../booking/shared/booking.model';
 import { Rental } from '../../shared/rental.model';
 import { HelperService } from '../../../common/service/helper.service';
+import { BookingService } from '../../../booking/shared/booking.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 @Component({
@@ -15,9 +16,11 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() bookings: Booking[];
   
   newBooking: Booking;
+  modalRef: any;
 
   daterange: any = {};
   bookedOutDates: any[] = [];
+  errors: any[] = [];
 
   options: any = {
     locale: { format: Booking.DATE_FORMAT },
@@ -26,7 +29,8 @@ export class RentalDetailBookingComponent implements OnInit {
     isInvalidDate: this.checkForInvalidDates.bind(this)
 };
   constructor(private helper: HelperService, 
-              private modalService: NgbModal) { }
+              private modalService: NgbModal, 
+              private bookingService: BookingService) { }
 
   ngOnInit() {
     this.newBooking = new Booking();
@@ -49,12 +53,28 @@ export class RentalDetailBookingComponent implements OnInit {
     }
   }
 
+  private addNewBookedDates(bookingData: any) {
+    const dateRange = this.helper.getBookingRangeOfDates(bookingData.startAt, bookingData.endAt);
+    this.bookedOutDates.push(...dateRange);
+  }
+
   openConfirmModal(content) {
-    this.modalService.open(content);
+    this.errors = [];
+    this.modalRef = this.modalService.open(content);
   }
 
   createBooking() {
-    console.log(this.newBooking);
+    this.newBooking.rental = this.rental;
+
+    this.bookingService.createBooking(this.newBooking).subscribe(
+      (bookingData) => {
+        this.addNewBookedDates(bookingData);
+        this.newBooking = new Booking();
+        this.modalRef.close();
+      },
+      (errorResponse: any) => {
+        this.errors = errorResponse.error.errors;
+      })
   }
 
 

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { RentalService } from './shared/rental.service';
+import { BookingService } from '../booking/shared/booking.service';
 import { HelperService } from '../common/service/helper.service';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 import { NgPipesModule } from 'ngx-pipes';
@@ -47,7 +48,8 @@ children: [
     FormsModule
 ],
     providers: [RentalService,
-        HelperService]
+        HelperService,
+        BookingService]
 })
 
 export class RentalModule {}
